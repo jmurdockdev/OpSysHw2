@@ -10,36 +10,34 @@
 
 using namespace std;
 
-const  int MAXLINE = 40;
+const  int MAXLINE = 256;
 char line[MAXLINE];
+
+
+
 
 int main(int argc, char *argv[])
 {
 
-    //string arr[10];
-    // email will be argv[1]
-
-
-
     FILE *output = popen("find . -name \"*.c\"" , "w");
 
-    int i = 0;
-    while (fgets(line, MAXLINE, output) != NULL)
-    {
-        //cout << i << endl;
-        //copy line into the array;
+    string num;
 
-        i++;
+    string cmd = "find . -name \"*.c\" | wc -l";
+    cmd.append(" 2>&1");
+
+    FILE *numFiles = popen(cmd.c_str(), "r");
+    if (numFiles)
+    {
+        while (!feof(numFiles))
+
+            if (fgets(line, MAXLINE, numFiles) != NULL) num.append(line);
+
+        pclose(numFiles);
     }
 
-
     pclose(output);
-
-
-    string num;
-    stringstream convert;
-    convert << i ;
-    num = convert.str();
+    //pclose(numFiles);
 
     stringstream ss("find . -name \"*.c\" | mailx -s ", ios_base::app | ios_base::out);
 
@@ -50,8 +48,7 @@ int main(int argc, char *argv[])
     const char* command = str.c_str();
 
 
-
-    cout << command << endl;
+    //cout << command << endl;
 
     popen(command , "w" );
 

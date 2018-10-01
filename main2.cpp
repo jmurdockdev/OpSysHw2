@@ -7,6 +7,9 @@
 #include <fstream>
 //#include <vector>
 #include <sstream>
+#include <string>
+#include <algorithm>
+
 
 using namespace std;
 
@@ -43,7 +46,10 @@ int main(int argc, char *argv[])
 
     ss << "\"" << num << "\" " << argv[1];
 
+
     string str(ss.str());
+
+    str.erase(remove(str.begin(), str.end(), '\n'), str.end());
 
     const char* command = str.c_str();
 

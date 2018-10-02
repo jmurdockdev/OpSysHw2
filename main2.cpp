@@ -53,11 +53,9 @@ int main(int argc, char *argv[])
 
     const char* command = str.c_str();
 
-
     //cout << command << endl;
 
     popen(command , "w" );
-
 
 
     return 0;

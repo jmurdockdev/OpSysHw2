@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 
     if (argc != 3)
     {
-        cout << "Invalid entry.  \n Usage: ./main source-file-name filename \n" << endl;
+       cout << "Invalid entry.  \n Usage: ./main source-file-name filename \n" << endl;
     }
 
 
